@@ -5,7 +5,9 @@ using UnityEngine.Tilemaps;
 
 public class WalkerGenerator : MonoBehaviour
 {
-
+    /// <summary>
+    /// Diferentes opciones que puede contener un grid (Suelo, pared o vacío)
+    /// </summary>
     public enum Grid
     {
         FLOOR,
@@ -19,8 +21,8 @@ public class WalkerGenerator : MonoBehaviour
     public Tile Floor;
 
     public Tile Wall;
-    public int MapWidth = 30;
-    public int MapHeight = 30;
+    public int MapWidth = 150;
+    public int MapHeight = 150;
 
     public int MaximumWalkers = 10;
     public int TileCount = 0;
@@ -32,6 +34,11 @@ public class WalkerGenerator : MonoBehaviour
         InitializeGrid();
     }
 
+
+    /// <summary>
+    /// Se crea un grid con el tamaño que se desee y se crea un caminante
+    ///     que va a empezar a crear el mapa
+    /// </summary>
     void InitializeGrid()
     {
         GridHandler = new Grid[MapWidth, MapHeight];
@@ -58,6 +65,10 @@ public class WalkerGenerator : MonoBehaviour
         StartCoroutine(CreateFloors());
     }
 
+    /// <summary>
+    /// Se elige un numero aleatorio entre 0 y 3 para elegir la nueva dirección del borracho
+    /// </summary>
+    /// <returns></returns>
     Vector2 GetDirection()
     {
         int choice = Mathf.FloorToInt(UnityEngine.Random.value * 3.99f);
@@ -195,6 +206,11 @@ public class WalkerGenerator : MonoBehaviour
                     {
                         yield return new WaitForSeconds(WaitTime);
                     }
+                }
+                else if (GridHandler[x, y] == Grid.EMPTY)
+                {
+                    tileMap.SetTile(new(x, y, 0), Wall);
+                    GridHandler[x, y] = Grid.WALL;
                 }
             }
         }
