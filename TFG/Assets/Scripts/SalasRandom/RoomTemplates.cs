@@ -11,6 +11,18 @@ public class RoomTemplates : MonoBehaviour
     public GameObject[] RigthRooms = { };
     public GameObject[] BottomRooms = { };
 
+    public List<GameObject> rooms;
+    public GameObject miner;
+
+    private void Start()
+    {
+        Invoke("SpawnMiner", 3);
+    }
+
+    private void SpawnMiner()
+    {
+        Instantiate(miner, rooms[rooms.Count - 1].transform.position, Quaternion.identity);
+    }
 
     // Se elimina la sala si se intenta crear encima de la sala central
     private void OnTriggerEnter2D(Collider2D other)
@@ -20,4 +32,5 @@ public class RoomTemplates : MonoBehaviour
             Destroy(other.gameObject);
         }
     }
+
 }

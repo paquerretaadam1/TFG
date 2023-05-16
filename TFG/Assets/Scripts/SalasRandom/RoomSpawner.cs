@@ -4,14 +4,16 @@ public class RoomSpawner : MonoBehaviour
 {
 
     public int openSide;
+    public float WaitTime = 0.1f;
 
     private RoomTemplates templates;
     private bool Spawned;
 
+
     void Start()
     {
         templates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplates>();
-        Invoke("Spawn", 0.1f);
+        Invoke("Spawn", WaitTime);
     }
 
 
@@ -74,6 +76,10 @@ public class RoomSpawner : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (other.gameObject.tag != "SpawnPoint" && other.gameObject.tag != "Player")
+        {
+            print(other.gameObject.ToString());
+        }
         if (other.CompareTag("SpawnPoint"))
         {
             if (!other.GetComponent<RoomSpawner>().Spawned && !Spawned && templates is not null)

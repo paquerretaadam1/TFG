@@ -81,6 +81,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9199846790121536357}
   - component: {fileID: 9199846790121536356}
+  - component: {fileID: 8591883538664813330}
   m_Layer: 0
   m_Name: R-Room
   m_TagString: Untagged
@@ -120,6 +121,18 @@ Grid:
   m_CellGap: {x: 0, y: 0, z: 0}
   m_CellLayout: 0
   m_CellSwizzle: 0
+--- !u!114 &8591883538664813330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9199846790121536359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e82801f1a8880a748b40107020dd8294, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &9199846790336938560
 GameObject:
   m_ObjectHideFlags: 0
